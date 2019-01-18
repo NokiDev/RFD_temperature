@@ -1,6 +1,7 @@
 import sensor
 import sys
 import time
+import json
 from bluetooth import *
 
 ## CONFIG:
@@ -17,12 +18,12 @@ def run():
 		print("Checking Temperature")
 		humidity, temperature = sensor.check_temperature()
 		timestamp = time.time()
-	#Connect temporarly when sending the data overbluetooth
+                message = json.JSONEncoder().encode({"temperature": temperature, "humidity": humidity, "timestamp": timestamp})
+        #Connect temporarly when sending the data overbluetooth
 		try :
 			s=BluetoothSocket( RFCOMM )
 			print("Connect to {}:{}".format(HOST, PORT))
 			s.connect((HOST, PORT))
-			message = "id:{},humidity:{},temperature:{},timestamp:{}".format(ID, humidity, temperature, timestamp)
 			s.send(message)
 			s.close()
 		except :
