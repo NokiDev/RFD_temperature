@@ -18,7 +18,7 @@ def run():
 		print("Checking Temperature")
 		humidity, temperature = sensor.check_temperature()
 		timestamp = time.time()
-                message = json.JSONEncoder().encode({"temperature": temperature, "humidity": humidity, "timestamp": timestamp})
+		message = json.JSONEncoder().encode({"temperature": temperature, "humidity": humidity, "timestamp": timestamp})
         #Connect temporarly when sending the data overbluetooth
 		try :
 			s=BluetoothSocket( RFCOMM )
