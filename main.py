@@ -8,7 +8,7 @@ from bluetooth import *
 ID = "1"
 HOST = "B8:27:EB:40:D6:34" if not len(sys.argv) == 2 else sys.argv[1]
 PORT = 3 if not len(sys.argv) == 3 else sys.argv[2]
-TIME = 60 if not len(sys.argv) == 4 else sys.argv[3]
+TIME = 5 if not len(sys.argv) == 4 else sys.argv[3]
 
 ## Open bluetooth socket, and connect to HOST, and send the message in parameters.
 def send_message_once(message):
@@ -36,7 +36,7 @@ def run():
 			send_message_once(message)
 			elapsedTime = time.time() - timestamp
 			timeToWait = TIME - elapsedTime if TIME - elapsedTime > 0 else 0 
-			time.sleep(TIME)
+			time.sleep(timeToWait)
 	except KeyboardInterrupt:
 		print("QUITTING")
 	sensor.deinit()
